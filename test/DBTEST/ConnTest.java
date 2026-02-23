@@ -2,7 +2,7 @@ package DBTEST;
 
 import database.DBConnection;
         
-public class Test {
+public class ConnTest {
     public static void main(String[ ] args){
         System.out.println("--- testing supabase conn ---");
         
