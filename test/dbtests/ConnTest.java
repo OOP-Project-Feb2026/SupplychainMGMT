@@ -1,4 +1,4 @@
-package DBTEST;
+package dbtests;
 
 import database.DBConnection;
         
