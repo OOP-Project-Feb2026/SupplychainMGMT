@@ -1,18 +1,18 @@
-package DBTEST;
+package dbtests;
 
-import database.DBConnection;
+import database.*;
         
 public class ConnTest {
     public static void main(String[ ] args){
         System.out.println("--- testing supabase conn ---");
         
         // 1. Initialize the connection
-        DBConnection db = new DBConnection();
+        DBConnection db = new DBOperations();
         
         // 2. Check if connection was successful
         if (db.con != null) {
-            System.out.println("connnected!");
-            // 3. Always close the connection when done
+            System.out.println("connected!");
+            // 3. Close the connection when done
             db.closeConnection();
         } else {
             System.out.println("failed to connect");
