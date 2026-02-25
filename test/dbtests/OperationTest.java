@@ -3,7 +3,7 @@ package dbtests;
 import database.DBOperations;
 
 public class OperationTest {
-       public static void main(String[] args) {
+    public static void main(String[] args) {
         DBOperations dbc = new DBOperations();
 
         dbc.insert(2233, "Edith", "Wholesaler", "edith@gmail.com", "Nairobi", true, 4);
