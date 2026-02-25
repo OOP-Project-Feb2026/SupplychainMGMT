@@ -1,12 +1,22 @@
 package database;
 
-
 import java.sql.*;
 
 public class DBOperations extends DBConnection {
 
     @Override
     public void insert(int id, String name, String type, String email, String location, boolean is_active, int rating) {
+        // Validation Check
+        if (!util.ValidationUtil.isValidRating(rating)) {
+            System.err.println("Validation Failed: Rating must be between 1 and 5.");
+        return; 
+        }
+    
+        if (!util.ValidationUtil.isValidEmail(email)) {
+            System.err.println("Validation Failed: Invalid email format.");
+            return;
+        }
+        
         String query = "INSERT INTO vendors (vendor_id, vendor_name, vendor_type, vendor_email, vendor_location, is_active, vendor_rating) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pst = con.prepareStatement(query)) {
             pst.setInt(1, id);
