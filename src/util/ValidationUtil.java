@@ -4,16 +4,25 @@
  */
 package util;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author edith
  */
 public class ValidationUtil {
+
+    private static final Pattern EMAIL_PATTERN =
+            Pattern.compile("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+
     public static boolean isValidRating(int rating) {
         return rating >= 1 && rating <= 5;
     }
 
     public static boolean isValidEmail(String email) {
-        return email.contains("@") && email.contains(".");
+        if (email == null) {
+            return false;
+        }
+        return EMAIL_PATTERN.matcher(email).matches();
     }
 }
