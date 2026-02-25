@@ -11,7 +11,7 @@ public class ConnTest {
         
         // 2. Check if connection was successful
         if (db.con != null) {
-            System.out.println("connnected!");
+            System.out.println("connected!");
             // 3. Close the connection when done
             db.closeConnection();
         } else {
