@@ -113,7 +113,38 @@ public class LoginJF extends javax.swing.JFrame {
     }//GEN-LAST:event_UserJTFActionPerformed
 
     private void SearchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBTActionPerformed
-        // TODO add your handling code here:
+       String user = UserJTF.getText().trim();
+       String pass = new String (jPasswordField1.getPassword()).trim();
+       
+       if (user.isEmpty() || pass.isEmpty()) {
+           javax.swing.JOptionPane.showMessageDialog(this,
+           "Please fill in all fields.", "Error",
+           javax.swing.JOptionPane.WARNING_MESSAGE);
+           return;
+        }
+       jProgressBar1.setIndeterminate(true);
+       
+       new Thread(() -> {
+           database.DBOperations db = new database.DBOperations();
+           String role = db.getUserRole(user, pass);
+           db.closeConnection();
+           
+           java.awt.EventQueue.invokeLater(() -> {
+               jProgressBar1.setIndeterminate(false);
+               if (role == null) {
+                   javax.swing.JOptionPane.showMessageDialog(this,
+                           "Invalid username or password.","Login Failed",
+                           javax.swing.JOptionPane.ERROR_MESSAGE);
+                   return;
+               }
+               if (role.equals("admin")) {
+                   new AdminDashboardJF().setVisible(true);
+               } else {
+                   new VendorDashboardJF(user).setVisible(true);
+               }
+               this.dispose();
+           });
+       }).start();
     }//GEN-LAST:event_SearchBTActionPerformed
 
     /**
