@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app;
 
-/**
- *
- * @author edith
- */
+import gui.LoginJF;
+
 public class Main {
-    
+    public static void main(String[] args) {
+        // Use the built-in Java Swing thread for thread safety
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginJF().setVisible(true);
+        });
+    }
 }
