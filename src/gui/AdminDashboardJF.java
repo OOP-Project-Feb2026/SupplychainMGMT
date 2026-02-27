@@ -8,14 +8,14 @@ package gui;
  *
  * @author edith
  */
-public class VendorDashoardJF extends javax.swing.JFrame {
+public class AdminDashboardJF extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VendorDashoardJF.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminDashboardJF.class.getName());
 
     /**
-     * Creates new form VendorDashoardJF
+     * Creates new form AdminDashboadJF
      */
-    public VendorDashoardJF() {
+    public AdminDashboardJF() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class VendorDashoardJF extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VendorDashoardJF().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new AdminDashboardJF().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
