@@ -6,10 +6,10 @@ public abstract class Vendor {
     protected String name;
     protected String email;
     protected String location;
-    protected String isActive;
+    protected boolean isActive;
     protected int rating;
 
-    public Vendor(int id, String name, String email, String location,String isActive, int rating) {
+    public Vendor(int id, String name, String email, String location,boolean isActive, int rating) {
         this.id = id;
         this.name = name;
         this.email = email;
