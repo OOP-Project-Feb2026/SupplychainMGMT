@@ -4,7 +4,7 @@ package models;
 public class Wholesaler extends Vendor {
     private String warehouseLocation;
 
-    public Wholesaler(int id, String name, String email, String location,String isActive, int rating, String warehouseLocation) {
+    public Wholesaler(int id, String name, String email, String location, boolean isActive, int rating, String warehouseLocation) {
         super(id, name, email, location, isActive, rating);
         this.warehouseLocation = warehouseLocation;
     }
