@@ -44,7 +44,7 @@ public abstract class DBConnection {
     public abstract boolean delete(int id);
     public abstract String[] select(int id);
     public abstract boolean selectAll();
-    //role func to help you be directed to repective dashboard
+    //role func to help you be directed to respective dashboard
     public abstract String getUserRole(String username, String password);
     //auth func
     public abstract boolean userAuth(String username, String password);
