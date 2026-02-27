@@ -1,4 +1,3 @@
-
 package models;
 
 
@@ -23,6 +22,10 @@ public abstract class Vendor {
     public abstract void displaySpecificRoleInfo();
 
     // Getters
-    public int getId() { return id; }
-    public String getName() { return name; }
+    public int getId() { 
+        return id; 
+    }
+    public String getName() { 
+        return name; 
+    }
 }
