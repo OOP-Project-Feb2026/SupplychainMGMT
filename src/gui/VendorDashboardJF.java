@@ -8,6 +8,10 @@ package gui;
 public class VendorDashboardJF extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VendorDashboardJF.class.getName());
+    
+    public VendorDashboardJF(){
+        this("vendor");
+    }
 
     public VendorDashboardJF(String username) {
         initComponents();
@@ -21,7 +25,7 @@ public class VendorDashboardJF extends javax.swing.JFrame {
         pst.setString(1, loggedInUsername);
         java.sql.ResultSet rs = pst.executeQuery();
         if (rs.next()) {
-            nameValueJL.setText(rs.getString("vendor_name"));
+            nameValueJl.setText(rs.getString("vendor_name"));
             typeValueJL.setText(rs.getString("vendor_type"));
             emailValueJL.setText(rs.getString("vendor_email"));
             locationValueJL.setText(rs.getString("vendor_location"));
@@ -29,7 +33,7 @@ public class VendorDashboardJF extends javax.swing.JFrame {
             boolean active = rs.getBoolean("is_active");
             statusValueJL.setText(active ? "Active" : "Inactive");
         } else {
-            nameValueJL.setText("Profile not found for: " + loggedInUsername);
+            nameValueJl.setText("Profile not found for: " + loggedInUsername);
         }
     } catch (java.sql.SQLException e) {
         System.err.println("Profile error: " + e.getMessage());
@@ -186,6 +190,8 @@ public class VendorDashboardJF extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new VendorDashboardJF().setVisible(true));
     }
 
+    private String loggedInUsername;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel emailValueJL;
     private javax.swing.JLabel jLabel2;

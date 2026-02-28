@@ -15,6 +15,9 @@ public class VendorFormJF extends javax.swing.JFrame {
     /**
      * Creates new form VendorFormJF
      */
+    public VendorFormJF() {
+        this(null, -1, null);
+    }
     public VendorFormJF(database.DBOperations db, int editId, String[] existingData) {
         initComponents();
         this.db = db;
@@ -30,8 +33,8 @@ public class VendorFormJF extends javax.swing.JFrame {
  
     // If editing, pre-fill the form with existing data
     if (editId != -1 && existingData != null) {
-        idJTF.setText(existingData[0]);
-        idJTF.setEditable(false);  // Can't change the ID
+        idTF.setText(existingData[0]);
+        idTF.setEditable(false);  // Can't change the ID
         nameJTF.setText(existingData[1]);
         typeJCB.setSelectedItem(existingData[2]);
         emailJTF.setText(existingData[3]);
@@ -173,7 +176,7 @@ public class VendorFormJF extends javax.swing.JFrame {
 
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
     try{
-        int id = Integer.parseInt(idJTF.getText().trim());
+        int id = Integer.parseInt(idTF.getText().trim());
     String name = nameJTF.getText().trim();
     String type = (String) typeJCB.getSelectedItem();
     String email = emailJTF.getText().trim();
@@ -238,6 +241,9 @@ public class VendorFormJF extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new VendorFormJF().setVisible(true));
     }
 
+    private database.DBOperations db;
+    private int editId;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox activeJCB;
     private javax.swing.JButton cancelBT;
