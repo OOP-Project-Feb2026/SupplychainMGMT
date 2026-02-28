@@ -57,6 +57,9 @@ public class AdminDashboardJF extends javax.swing.JFrame {
         titleJL.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         titleJL.setText("Supply Chain Management");
 
+        jScrollPane1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
+        vendorTable.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         vendorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -70,21 +73,27 @@ public class AdminDashboardJF extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(vendorTable);
 
+        addBT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         addBT.setText("Add Vendor");
         addBT.addActionListener(this::addBTActionPerformed);
 
+        edditBT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         edditBT.setText("Edit Vendor");
         edditBT.addActionListener(this::edditBTActionPerformed);
 
+        deleteBT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         deleteBT.setText("Delete Vendor");
         deleteBT.addActionListener(this::deleteBTActionPerformed);
 
+        refreshBT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         refreshBT.setText("Refresh");
         refreshBT.addActionListener(this::refreshBTActionPerformed);
 
+        logoutBT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         logoutBT.setText("Logout");
         logoutBT.addActionListener(this::logoutBTActionPerformed);
 
+        statusJL.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         statusJL.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,7 +150,7 @@ public class AdminDashboardJF extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(statusJL)
                 .addGap(53, 53, 53))
         );

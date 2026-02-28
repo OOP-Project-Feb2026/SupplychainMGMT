@@ -70,31 +70,40 @@ public class VendorFormJF extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel1.setText("Vendor ID");
 
-        idTF.setText("jTextField1");
+        idTF.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel2.setText("Name");
 
-        nameJTF.setText("jTextField1");
+        nameJTF.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel3.setText("Type");
 
+        typeJCB.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         typeJCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel4.setText("Email");
 
-        emailJTF.setText("jTextField1");
+        emailJTF.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel5.setText("Location");
 
-        locationJTF.setText("jTextField1");
+        locationJTF.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
+        activeJCB.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         activeJCB.setText("Active");
 
+        saveBT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         saveBT.setText("Save");
         saveBT.addActionListener(this::saveBTActionPerformed);
 
+        cancelBT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         cancelBT.setText("Cancel");
         cancelBT.addActionListener(this::cancelBTActionPerformed);
 
@@ -168,7 +177,7 @@ public class VendorFormJF extends javax.swing.JFrame {
                     .addComponent(ratingJS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelBT)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();

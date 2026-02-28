@@ -67,32 +67,46 @@ public class VendorDashboardJF extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        titleJL.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         titleJL.setText("Vendor Portal");
 
+        label1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         label1.setText("Name");
 
+        nameValueJl.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         nameValueJl.setText("jLabel2");
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel2.setText("Type");
 
+        typeValueJL.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         typeValueJL.setText("jLabel3");
 
+        label3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         label3.setText("Email");
 
+        emailValueJL.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         emailValueJL.setText("jLabel1");
 
+        label4.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         label4.setText("Location");
 
+        locationValueJL.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         locationValueJL.setText("jLabel1");
 
+        label5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         label5.setText("Rating");
 
+        ratingValueJL.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         ratingValueJL.setText("jLabel1");
 
+        label6.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         label6.setText("Status");
 
+        statusValueJL.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         statusValueJL.setText("jLabel1");
 
+        logoutBT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         logoutBT.setText("Logout");
         logoutBT.addActionListener(this::logoutBTActionPerformed);
 
@@ -101,60 +115,76 @@ public class VendorDashboardJF extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(locationValueJL)
-                    .addComponent(label4)
-                    .addComponent(emailValueJL)
-                    .addComponent(titleJL)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label1)
-                            .addComponent(nameValueJl)
-                            .addComponent(jLabel2)
-                            .addComponent(typeValueJL)
-                            .addComponent(label3))
-                        .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logoutBT)
+                        .addGap(165, 165, 165)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(label6)
+                                        .addGap(90, 90, 90))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addComponent(label5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(ratingValueJL))
                             .addComponent(statusValueJL)
-                            .addComponent(label6)
-                            .addComponent(ratingValueJL)
-                            .addComponent(label5))))
-                .addContainerGap(97, Short.MAX_VALUE))
+                            .addComponent(titleJL, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(label4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(locationValueJL))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(label3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(emailValueJL))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(typeValueJL))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(label1)
+                                    .addGap(87, 87, 87)
+                                    .addComponent(nameValueJl)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(logoutBT)))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(33, 33, 33)
                 .addComponent(titleJL)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label1)
-                    .addComponent(label5))
+                    .addComponent(nameValueJl))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameValueJl)
-                    .addComponent(ratingValueJL))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(label6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(typeValueJL))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(typeValueJL)
+                    .addComponent(label3)
+                    .addComponent(emailValueJL))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label4)
+                    .addComponent(locationValueJL))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label5)
+                    .addComponent(ratingValueJL))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label6)
                     .addComponent(statusValueJL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label3)
-                    .addComponent(logoutBT))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailValueJL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(locationValueJL)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(logoutBT)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
