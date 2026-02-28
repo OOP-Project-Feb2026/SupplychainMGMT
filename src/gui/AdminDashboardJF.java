@@ -4,10 +4,9 @@
  */
 package gui;
 
-/**
- *
- * @author edith
- */
+import database.DBOperations;
+import javax.swing.table.DefaultTableModel;
+
 public class AdminDashboardJF extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminDashboardJF.class.getName());
@@ -17,6 +16,21 @@ public class AdminDashboardJF extends javax.swing.JFrame {
      */
     public AdminDashboardJF() {
         initComponents();
+        db = new DBOperations(); //ADD THIS
+        loadTableData(); //ADD THIS
+        }
+    private void loadTableData(){
+        String[] columns = {"ID", "Name", "Type", "Email", "Active"};
+    DefaultTableModel model = new DefaultTableModel(columns, 0) {
+        @Override
+        public boolean isCellEditable(int row, int col) { return false; }
+    };
+    for (Object[] row : db.getTableData()) {
+        model.addRow(row);
+    }
+    vendorTable.setModel(model);
+    statusJL.setText("Total Vendors:" +model.getRowCount());
+
     }
 
     /**
@@ -28,21 +42,171 @@ public class AdminDashboardJF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titleJL = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        vendorTable = new javax.swing.JTable();
+        addBT = new javax.swing.JButton();
+        edditBT = new javax.swing.JButton();
+        deleteBT = new javax.swing.JButton();
+        refreshBT = new javax.swing.JButton();
+        logoutBT = new javax.swing.JButton();
+        statusJL = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        titleJL.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        titleJL.setText("Supply Chain Management");
+
+        vendorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(vendorTable);
+
+        addBT.setText("Add Vendor");
+        addBT.addActionListener(this::addBTActionPerformed);
+
+        edditBT.setText("Edit Vendor");
+        edditBT.addActionListener(this::edditBTActionPerformed);
+
+        deleteBT.setText("Delete Vendor");
+        deleteBT.addActionListener(this::deleteBTActionPerformed);
+
+        refreshBT.setText("Refresh");
+        refreshBT.addActionListener(this::refreshBTActionPerformed);
+
+        logoutBT.setText("Logout");
+        logoutBT.addActionListener(this::logoutBTActionPerformed);
+
+        statusJL.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(logoutBT)
+                        .addGap(128, 128, 128))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(refreshBT)
+                            .addGap(125, 125, 125))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(addBT)
+                            .addGap(105, 105, 105)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edditBT)
+                            .addComponent(deleteBT))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(titleJL))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(298, 298, 298)
+                        .addComponent(statusJL)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleJL)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addBT)
+                        .addGap(18, 18, 18)
+                        .addComponent(edditBT)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteBT)
+                        .addGap(18, 18, 18)
+                        .addComponent(refreshBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(logoutBT))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(statusJL)
+                .addGap(53, 53, 53))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTActionPerformed
+    VendorFormJF form = new VendorFormJF(db, -1, null);
+form.setVisible(true);
+form.addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosed(java.awt.event.WindowEvent e) {
+        loadTableData();
+    }
+});
+ 
+    }//GEN-LAST:event_addBTActionPerformed
+
+    private void edditBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edditBTActionPerformed
+    int row = vendorTable.getSelectedRow();
+if (row == -1) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Please select a vendor to edit.");
+    return;
+}
+int id = (int) vendorTable.getValueAt(row, 0);
+String[] details = db.select(id);
+VendorFormJF form = new VendorFormJF(db, id, details);
+form.setVisible(true);
+form.addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosed(java.awt.event.WindowEvent e) {
+        loadTableData();
+    }
+});
+
+    }//GEN-LAST:event_edditBTActionPerformed
+
+    private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
+    int row = vendorTable.getSelectedRow();
+if (row == -1) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Please select a vendor to delete.");
+    return;
+}
+int id = (int) vendorTable.getValueAt(row, 0);
+String name = (String) vendorTable.getValueAt(row, 1);
+int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+    "Are you sure you want to delete " + name + "?",
+    "Confirm Delete", javax.swing.JOptionPane.YES_NO_OPTION);
+if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+    db.delete(id);
+    loadTableData();
+}
+
+    }//GEN-LAST:event_deleteBTActionPerformed
+
+    private void refreshBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBTActionPerformed
+    loadTableData();  
+    }//GEN-LAST:event_refreshBTActionPerformed
+
+    private void logoutBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBTActionPerformed
+    db.closeConnection();
+    new LoginJF().setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_logoutBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,6 +233,16 @@ public class AdminDashboardJF extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new AdminDashboardJF().setVisible(true));
     }
 
+    private DBOperations db;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBT;
+    private javax.swing.JButton deleteBT;
+    private javax.swing.JButton edditBT;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logoutBT;
+    private javax.swing.JButton refreshBT;
+    private javax.swing.JLabel statusJL;
+    private javax.swing.JLabel titleJL;
+    private javax.swing.JTable vendorTable;
     // End of variables declaration//GEN-END:variables
 }
