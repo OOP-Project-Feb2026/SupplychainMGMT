@@ -4,20 +4,38 @@
  */
 package gui;
 
-/**
- *
- * @author edith
- */
+
 public class VendorDashboardJF extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VendorDashboardJF.class.getName());
 
-    /**
-     * Creates new form VendorDashoardJF
-     */
-    public VendorDashboardJF() {
+    public VendorDashboardJF(String username) {
         initComponents();
+        this.loggedInUsername = username;
+        loadVendorProfile();
     }
+    private void loadVendorProfile() {
+    database.DBOperations db = new database.DBOperations();
+    String query = "SELECT * FROM vendors WHERE LOWER(vendor_name) = LOWER(?)";
+    try (java.sql.PreparedStatement pst = db.con.prepareStatement(query)) {
+        pst.setString(1, loggedInUsername);
+        java.sql.ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            nameValueJL.setText(rs.getString("vendor_name"));
+            typeValueJL.setText(rs.getString("vendor_type"));
+            emailValueJL.setText(rs.getString("vendor_email"));
+            locationValueJL.setText(rs.getString("vendor_location"));
+            ratingValueJL.setText(rs.getString("vendor_rating") + " / 5");
+            boolean active = rs.getBoolean("is_active");
+            statusValueJL.setText(active ? "Active" : "Inactive");
+        } else {
+            nameValueJL.setText("Profile not found for: " + loggedInUsername);
+        }
+    } catch (java.sql.SQLException e) {
+        System.err.println("Profile error: " + e.getMessage());
+    }
+    db.closeConnection();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,21 +46,120 @@ public class VendorDashboardJF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titleJL = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        nameValueJl = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        typeValueJL = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
+        emailValueJL = new javax.swing.JLabel();
+        label4 = new javax.swing.JLabel();
+        locationValueJL = new javax.swing.JLabel();
+        label5 = new javax.swing.JLabel();
+        ratingValueJL = new javax.swing.JLabel();
+        label6 = new javax.swing.JLabel();
+        statusValueJL = new javax.swing.JLabel();
+        logoutBT = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        titleJL.setText("Vendor Portal");
+
+        label1.setText("Name");
+
+        nameValueJl.setText("jLabel2");
+
+        jLabel2.setText("Type");
+
+        typeValueJL.setText("jLabel3");
+
+        label3.setText("Email");
+
+        emailValueJL.setText("jLabel1");
+
+        label4.setText("Location");
+
+        locationValueJL.setText("jLabel1");
+
+        label5.setText("Rating");
+
+        ratingValueJL.setText("jLabel1");
+
+        label6.setText("Status");
+
+        statusValueJL.setText("jLabel1");
+
+        logoutBT.setText("Logout");
+        logoutBT.addActionListener(this::logoutBTActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(locationValueJL)
+                    .addComponent(label4)
+                    .addComponent(emailValueJL)
+                    .addComponent(titleJL)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label1)
+                            .addComponent(nameValueJl)
+                            .addComponent(jLabel2)
+                            .addComponent(typeValueJL)
+                            .addComponent(label3))
+                        .addGap(87, 87, 87)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logoutBT)
+                            .addComponent(statusValueJL)
+                            .addComponent(label6)
+                            .addComponent(ratingValueJL)
+                            .addComponent(label5))))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(titleJL)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label1)
+                    .addComponent(label5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameValueJl)
+                    .addComponent(ratingValueJL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(label6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeValueJL)
+                    .addComponent(statusValueJL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label3)
+                    .addComponent(logoutBT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(emailValueJL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(locationValueJL)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBTActionPerformed
+    new LoginJF().setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_logoutBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +187,19 @@ public class VendorDashboardJF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel emailValueJL;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label3;
+    private javax.swing.JLabel label4;
+    private javax.swing.JLabel label5;
+    private javax.swing.JLabel label6;
+    private javax.swing.JLabel locationValueJL;
+    private javax.swing.JButton logoutBT;
+    private javax.swing.JLabel nameValueJl;
+    private javax.swing.JLabel ratingValueJL;
+    private javax.swing.JLabel statusValueJL;
+    private javax.swing.JLabel titleJL;
+    private javax.swing.JLabel typeValueJL;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,9 +15,31 @@ public class VendorFormJF extends javax.swing.JFrame {
     /**
      * Creates new form VendorFormJF
      */
-    public VendorFormJF() {
+    public VendorFormJF(database.DBOperations db, int editId, String[] existingData) {
         initComponents();
-    }
+        this.db = db;
+        this.editId = editId;
+        
+        // Set dropdown options
+    typeJCB.setModel(new javax.swing.DefaultComboBoxModel<>(
+        new String[]{"Manufacturer", "Wholesaler", "Retailer"}
+    ));
+ 
+    // Set spinner range 1-5
+    ratingJS.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+ 
+    // If editing, pre-fill the form with existing data
+    if (editId != -1 && existingData != null) {
+        idJTF.setText(existingData[0]);
+        idJTF.setEditable(false);  // Can't change the ID
+        nameJTF.setText(existingData[1]);
+        typeJCB.setSelectedItem(existingData[2]);
+        emailJTF.setText(existingData[3]);
+        locationJTF.setText(existingData[4]);
+        activeJCB.setSelected(Boolean.parseBoolean(existingData[5]));
+        ratingJS.setValue(Integer.parseInt(existingData[6]));
+     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,21 +50,168 @@ public class VendorFormJF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        idTF = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        nameJTF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        typeJCB = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        emailJTF = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        locationJTF = new javax.swing.JTextField();
+        activeJCB = new javax.swing.JCheckBox();
+        ratingJS = new javax.swing.JSpinner();
+        saveBT = new javax.swing.JButton();
+        cancelBT = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Vendor ID");
+
+        idTF.setText("jTextField1");
+
+        jLabel2.setText("Name");
+
+        nameJTF.setText("jTextField1");
+
+        jLabel3.setText("Type");
+
+        typeJCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel4.setText("Email");
+
+        emailJTF.setText("jTextField1");
+
+        jLabel5.setText("Location");
+
+        locationJTF.setText("jTextField1");
+
+        activeJCB.setText("Active");
+
+        saveBT.setText("Save");
+        saveBT.addActionListener(this::saveBTActionPerformed);
+
+        cancelBT.setText("Cancel");
+        cancelBT.addActionListener(this::cancelBTActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(locationJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(typeJCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(85, 85, 85)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(activeJCB, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cancelBT)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(saveBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addComponent(ratingJS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nameJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeJCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(emailJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(locationJTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(activeJCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBT)
+                    .addComponent(ratingJS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cancelBT)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
+    try{
+        int id = Integer.parseInt(idJTF.getText().trim());
+    String name = nameJTF.getText().trim();
+    String type = (String) typeJCB.getSelectedItem();
+    String email = emailJTF.getText().trim();
+    String location = locationJTF.getText().trim();
+    boolean active = activeJCB.isSelected();
+    int rating = (int) ratingJS.getValue();
+ 
+    if (name.isEmpty() || email.isEmpty() || location.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        return;
+    }
+ 
+    boolean success;
+    if (editId == -1) {
+        success = db.insert(id, name, type, email, location, active, rating);
+    } else {
+        success = db.update(id, name, type, email, location, active, rating);
+    }
+ 
+    if (success) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Saved successfully!");
+        this.dispose();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Save failed. Check that the email is valid and rating is 1-5.",
+            "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+} catch (NumberFormatException e) {
+    javax.swing.JOptionPane.showMessageDialog(this,
+        "ID must be a number.", "Error",
+        javax.swing.JOptionPane.ERROR_MESSAGE);
+
+    }
+    }//GEN-LAST:event_saveBTActionPerformed
+
+    private void cancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTActionPerformed
+    this.dispose();
+    }//GEN-LAST:event_cancelBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +239,19 @@ public class VendorFormJF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox activeJCB;
+    private javax.swing.JButton cancelBT;
+    private javax.swing.JTextField emailJTF;
+    private javax.swing.JTextField idTF;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField locationJTF;
+    private javax.swing.JTextField nameJTF;
+    private javax.swing.JSpinner ratingJS;
+    private javax.swing.JButton saveBT;
+    private javax.swing.JComboBox<String> typeJCB;
     // End of variables declaration//GEN-END:variables
 }
