@@ -20,7 +20,7 @@ public class VendorDashboardJF extends javax.swing.JFrame {
     }
     private void loadVendorProfile() {
     database.DBOperations db = new database.DBOperations();
-    String query = "SELECT * FROM vendors WHERE LOWER(vendor_name) = LOWER(?)";
+    String query = "SELECT * FROM vendors WHERE username = ?";
     try (java.sql.PreparedStatement pst = db.con.prepareStatement(query)) {
         pst.setString(1, loggedInUsername);
         java.sql.ResultSet rs = pst.executeQuery();
@@ -163,7 +163,7 @@ public class VendorDashboardJF extends javax.swing.JFrame {
                     .addComponent(label1)
                     .addComponent(nameValueJl))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(typeValueJL))
                 .addGap(18, 18, 18)
